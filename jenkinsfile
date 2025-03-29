@@ -1,0 +1,31 @@
+pipeline {
+    agent {label 'slave-1'}
+    tools {
+      git 'git'
+      maven 'maven'
+    }
+    stages {
+        stage('git checkout') {
+            steps {
+                git 'https://github.com/Sushmaa123/Java-Springboot.git'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'this is test phase'
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'this is deploy phase'
+            }
+        }
+    }
+}
+
+       
